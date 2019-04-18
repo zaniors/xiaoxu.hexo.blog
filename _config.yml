@@ -3,20 +3,20 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
-author: John Doe
+title: Zhary's blog
+subtitle: 个人博客
+description: 张旭的个人博客
+keywords: Zhary compelcode 张旭 个人博客
+author: Zhary Zhang
 language:
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://compelcode.com
 root: /
 permalink: :year/:month/:day/:title/
-permalink_defaults:
+permalink_defaults: :year/:month/:day/:title/
 
 # Directory
 source_dir: source
