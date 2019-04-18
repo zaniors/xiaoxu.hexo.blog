@@ -150,15 +150,15 @@ reward:
   #    url: link of the payment
   #    text: link text of the url
   # qrcode and url must be set at least one
-  # methods:
+  methods:
   #   - name: wechat
   #     qrcode:
   #     url:
   #     text:
-  #   - name: alipay
-  #     qrcode:
-  #     url:
-  #     text:
+    - name: alipay
+      qrcode: http://cdn.compelcode.com/image/common/alipay.png
+      url:
+      text: 支付宝支付
   #   - name: paypal
   #     qrcode:
   #     url:
