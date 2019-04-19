@@ -8,7 +8,7 @@ subtitle: 个人博客
 description: 张旭的个人博客
 keywords: Zhary compelcode 张旭 个人博客
 author: Zhary Zhang
-language:
+language: zh-Hans
 timezone:
 
 # URL
@@ -78,4 +78,6 @@ theme: hexo-theme-inside
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: root@compelcode.com:/my-git/zhary-hexo-blog
+  branch: master
