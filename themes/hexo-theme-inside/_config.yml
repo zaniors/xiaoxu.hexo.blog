@@ -129,8 +129,8 @@ category:
 # for example: `![cat](images/cat.gif)` will convert to:
 # <img src="https://cdn.example.com/images/cat.gif?m=webp&q=80" alt="cat">
 assets:
-  # prefix: 'https://cdn.example.com'
-  # suffix: '?m=webp&q=80'
+  prefix: 'http://cdn.compelcode.com'
+  suffix: ''
 
 # Table of content, enabled by default, set to false to disable.
 toc:
@@ -154,7 +154,7 @@ reward:
     - name: wechat
       qrcode: http://cdn.compelcode.com/image/common/wechat.png
       url:
-      text:  微信支付
+      text: 微信支付
     - name: alipay
       qrcode: http://cdn.compelcode.com/image/common/alipay.png
       url: 
