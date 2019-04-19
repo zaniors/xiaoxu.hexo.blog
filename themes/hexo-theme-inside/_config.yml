@@ -15,9 +15,9 @@ appearance:
   # background can be an array, in which case, the second value
   # is used as the background when the sidebar is open, default to accent_color,
   # for the best appearance, Keep its accent consistent with accent_color
-  # background:
-  #   - 'url(//www.toptal.com/designers/subtlepatterns/patterns/confectionary.png) #f5f7fa'
-  #   - '#2a2b33'
+  background:
+    - 'url(//www.toptal.com/designers/subtlepatterns/patterns/confectionary.png) #f5f7fa'
+    - '#2a2b33'
 
   # Maximum width of content
   content_width: 900
