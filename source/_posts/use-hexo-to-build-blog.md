@@ -23,7 +23,7 @@ $ brew install node
 ```
 3. 安装[hexo](https://hexo.io/zh-cn/docs/index.html)
 ``` bash
-npm install -g hexo-cli
+npm install -g hexo-cli hexo-deployer-git
 ```
 4. 初始化hexo项目
 ``` bash
@@ -38,16 +38,46 @@ hexo init my-hexo-blog
 $ yum install -y git nginx
 ```
 2. 配置Git
-``` bash 初始化远端git
+``` bash
 $ mkdir /my-git
 
 $ cd /my-git
 $ git init --bare zhary-hexo-blog.git
+
+$ vim /my-git/zhary-hexo-blog.git/hooks/post-receive
+# 写入以下代码块
+#!/bin/bash
+git --work-tree=/www/hexo --git-dir=/my-git/zhary-hexo-blog.git checkout -f
+
+chmod -x /my-git/zhary-hexo-blog.git/hooks/post-receive
 ```
-3.配置Nginx
-4.
+
+3. 配置Nginx
+``` bash
+$ mkdir -p /www/hexo    # 作为博客站点的目录
+$ vim /etc/nginx/conf.d/hexo.conf   # 新建一份配置
+
+# 写入以下代码块,注释可忽略
+server {
+    listen       80;
+    server_name  .compelcode.com;   # 博客域名
+    root         /www/hexo; # 博客的目录
+
+    location / {
+    }
+
+    error_page 404 /404/index.html; #   404页面配置
+        location = /40x.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+    }
+}
+```
 
 ### 配置本地hexo
+1. 修改_config.yml文件
 ``` yaml
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -55,4 +85,9 @@ deploy:
   type: git
   repo: root@compelcode.com:/my-git/zhary-hexo-blog
   branch: master
+```
+
+2. 本地部署
+``` bash
+$ hexo generate --deploy 或者 hexo g -d
 ```
