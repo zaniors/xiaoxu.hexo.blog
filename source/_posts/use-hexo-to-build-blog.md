@@ -4,8 +4,10 @@ date: 2019-04-19 15:19:43
 thumbnail: http://cdn.compelcode.com/image/fe/hexo.jpg
 tags: 
     - hexo
-    - nginx, 
+    - nginx
     - git
+categories:
+    - 前端
 ---
 
 记录使用[Hexo](https://hexo.io/)搭建个人博客，利用Git Hooks部署到云服务器

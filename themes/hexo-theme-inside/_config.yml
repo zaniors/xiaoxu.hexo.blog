@@ -46,7 +46,7 @@ sns:
   email:
   # `feed` will fallback to `hexo.config.feed.path` if not specified
   feed:
-  github:
+  github: https://gitee.com/Astraycat
   twitter:
   facebook:
   google+:
@@ -66,17 +66,16 @@ sns:
 # Sidebar footer
 footer:
   # Default to `©year • author`, set to false to disable.
-  # copyright: ©2019 ❤
 
   # Set to false to hide Hexo link.
-  # powered: false
+  powered: false
 
   # Set to false to hide theme link.
-  # theme: false
+  theme: false
 
   # Custom text.
-  # custom: Hosted by <a target="_blank" rel="noopener"
-  #   href="https://pages.coding.me"><b>Coding Pages</b></a>
+  custom: <a target="_blank" rel="noopener"
+    href="http://www.miibeian.gov.cn/">渝ICP备17003338号</a>
 
 
 # ---------------------------------------------------------------
@@ -92,7 +91,7 @@ page:
   reward: true
 
   # Display copyright notice, default to `false`
-  copyright: true
+  # copyright: true
 
 
 # Post
@@ -106,7 +105,7 @@ post:
   reward: true
 
   # Display copyright notice, default to `false`
-  copyright: true
+  # copyright: true
 
 # Archive
 archive:
@@ -228,12 +227,12 @@ comments:
 # favicon: favicon.ico
 
 # Google analytics
-# ga: UA-00000000-0
+ga: UA-138740164-1
 
 # SEO
 seo:
   # Render structured-data in <head>, default to `false`
-  # structured_data: true
+  structured_data: true
 
 # PWA
 pwa:
@@ -294,5 +293,13 @@ pwa:
 # npm install babel-core babel-preset-env html-minifier uglify-js --save
 # ```
 plugins:
-  # - position:
-  #   template:
+  - position: comments
+    template: |
+      <div id="SOHUCS"></div>
+      <script type="text/javascript">
+      (function(){
+      var appid = 'cysGxW1Pw';
+      var conf = 'prod_3ccf0668794fb70ec34e84d503eb1e99'; 
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
