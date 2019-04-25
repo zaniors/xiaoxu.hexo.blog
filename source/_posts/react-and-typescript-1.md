@@ -78,10 +78,10 @@ $ npx create-react-app react-ts-app --typescript
 2. 
 ``` jsx
     // Step.tsx
-    class Button extends Component {
+    class Step extends Component {
         render() {
             return (
-                <div className='step-container'>
+                <div>
                     <button>-</button>
                     <span>1</span>
                     <button>+</button>
@@ -89,7 +89,7 @@ $ npx create-react-app react-ts-app --typescript
             );
         }
     }
-    export default Button;
+    export default Step;
 ```
 可能会问这个和JS的React有什么不同吗？我们看下继承的Component源码(截取部分)
 ``` jsx
@@ -109,7 +109,7 @@ $ npx create-react-app react-ts-app --typescript
     }
     type State = Readonly<typeof initState>
 
-    class Button extends Component<{}, State> {
+    class Step extends Component<{}, State> {
         constructor(props: {}) {
             super(props);
 
@@ -144,7 +144,7 @@ $ npx create-react-app react-ts-app --typescript
         }
     }
 
-    export default Button;
+    export default Step;
 ```
 ``` jsx
     const initState = {
