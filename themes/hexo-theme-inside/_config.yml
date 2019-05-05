@@ -142,7 +142,7 @@ toc:
 # Reward
 reward:
   # Text which shows at the top.
-  text: 请我喝杯咖啡☕.
+  text: 请我喝杯咖啡☕
 
   # Payment Methods
   #  - qrcode: url of the qrcode image
@@ -193,12 +193,12 @@ reward:
 # Built-in support Disqus (https://disqus.com) and LiveRe (https://livere.com),
 # for other comment system, see plugins
 comments:
-  # disqus:
-    # shortname: disqus_shortname
+  disqus:
+    # shortname: 
     # Or you can set disqus script URL directly
-    # script: //disqus_shortname.disqus.com/embed.js
+    script: //zhary.disqus.com/embed.js
     # Autoload, default to `true`, set to `false` to display a button
-    # autoload: false
+    autoload: true
 
   # livere:
     # uid: livere_uid
@@ -293,6 +293,5 @@ pwa:
 # npm install babel-core babel-preset-env html-minifier uglify-js --save
 # ```
 plugins:
-  - position: page
-    template: |
-      <div id="SOHUCS"></div> <script type="text/javascript"> (function(){ var appid = 'cysGxW1Pw'; var conf = 'eb61b2f4eda1f1eb3b42f7f254de54cc'; var width = window.innerWidth || document.documentElement.clientWidth; if (width < 960) { window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  # - position: comments
+  #   template: <div id="SOHUCS"></div> <script type="text/javascript"> (function(){ var appid = 'cysGxW1Pw'; var conf = 'eb61b2f4eda1f1eb3b42f7f254de54cc'; var width = window.innerWidth || document.documentElement.clientWidth; if (width < 960) { window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
