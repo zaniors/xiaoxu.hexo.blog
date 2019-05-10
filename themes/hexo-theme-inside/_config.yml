@@ -128,7 +128,7 @@ category:
 # for example: `![cat](images/cat.gif)` will convert to:
 # <img src="https://cdn.example.com/images/cat.gif?m=webp&q=80" alt="cat">
 assets:
-  prefix: 'http://cdn.compelcode.com'
+  prefix: ''
   suffix: ''
 
 # Table of content, enabled by default, set to false to disable.

@@ -81,6 +81,3 @@ deploy:
   type: git
   repo: ssh://root@compelcode.com:57924/my-git/zhary-hexo-git
   branch: master
-# - type: git
-#   repo: root@compelcode.com:/my-git/zhary-hexo-blog
-#   branch: master

@@ -16,3 +16,18 @@ constructor() {
     this.handleClick = this.handleClick.bind(this);
 }
 ```
+
+## diff算法对比，减少update次数
+> key属性，值要唯一
+> 官方所提出的setState异步更新，正常运行时就是批更新，达到一定条件将队列中多次更改合并一次，触发一次更新state
+
+> 父组件的render，会触发子组件update(无论props是否更新)，可以在子组件shouldComponentUpdate判断是否更新子组件
+
+```jsx
+shouldComponentUpdate(nextProps, netState) {
+    if (nextProps.xxx !== this.props.xxx) {
+        return true;
+    }
+    return false;
+}
+```
