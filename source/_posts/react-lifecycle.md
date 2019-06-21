@@ -1,5 +1,5 @@
 ---
-title: react-lifecycle
+title: React生命周期
 date: 2019-04-29 09:48:40
 tags: [react]
 categories: [前端]

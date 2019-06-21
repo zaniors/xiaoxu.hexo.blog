@@ -1,5 +1,5 @@
 ---
-title: react-use-redux
+title: 在React中使用Redux
 date: 2019-05-08 22:46:42
 tags: [react, redux]
 categories: [前端]
