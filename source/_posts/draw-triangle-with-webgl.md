@@ -1,8 +1,8 @@
 ---
-title: 使用WebGL绘制一个漂亮的三角形（包含矩阵变换动画）
+title: 使用WebGL绘制一个漂亮的三角形
 date: 2019-06-15 09:40:27
 tags: [webgl, glsl, javascript]
-categories: [前端]
+categories: [前端, webgl]
 thumbnail:
 ---
 
@@ -144,7 +144,7 @@ gl.vertexAttribPointer(
     trianglePositionLocation,
     2,
     gl.FLOAT,
-    gl.FALSE,
+    0,
     0,
     0
 );
@@ -161,3 +161,88 @@ render();
 ```
 ### 效果图
 ![](http://cdn.compelcode.com/image/fe/webgl-triangle-1.png)
+
+### 绘制颜色
+> 上面将三角形的位置通过变量传入着色器，下面将颜色也传入着色器
+
+- 修改着色器代码
+- 修改顶点数据，将颜色值也放入Buffer缓冲区
+- 取着色器变量，赋值buffer颜色数据
+- 启用缓冲区对象
+
+#### 修改着色器
+``` js 
+var vertexShaderSource =
+    [
+        'precision mediump float;',
+        'attribute vec2 trianglePotision;',
+        'attribute vec3 triangleColor;',
+        'varying vec3 fragColor;',
+        'void main() {',
+            'gl_Position = vec4(trianglePotision, 0.0, 1.0);',
+            'fragColor = triangleColor;',
+        '}'
+    ].join('\n');
+
+var fragmentShaderSource =
+    [
+        'precision mediump float;',
+        'varying vec3 fragColor;',
+        'void main() {',
+            'gl_FragColor = vec4(fragColor, 1.0);',
+        '}',
+    ].join('\n');
+```
+attribute：用于顶点着色器，向顶点着色器传数据
+varying：用于顶点着色器和片元着色器两者之间通信，需要两者同样定义
+
+#### 修改缓冲区数据
+``` js 
+var triangleVertices = new Float32Array([
+    // x y      r g b
+    0.0, 0.5,   1.0, 1.0, 0.0,
+    -0.5, -0.5, 0.7, 0.0, 1.0,
+    0.5, -0.5,  0.1, 1.0, 0.6,
+]);
+```
+
+#### 取顶点着色器里的颜色变量
+``` js 
+var triangleColorLocation = gl.getAttribLocation(gl.program, 'triangleColor');
+
+gl.vertexAttribPointer(
+    trianglePositionLocation,
+    2,
+    gl.FLOAT,
+    0,
+    5 * triangleVertices.BYTES_PER_ELEMENT,
+    0
+);
+gl.vertexAttribPointer(
+    triangleColorLocation,
+    3,
+    gl.FLOAT,
+    0,
+    5 * triangleVertices.BYTES_PER_ELEMENT,
+    2 * triangleVertices.BYTES_PER_ELEMENT
+);
+```
+由于缓冲区顶点数据改变，之前的位置信息也改变了
+vertexAttribPointer：告诉显卡从当前绑定的缓冲区中读取数据
+- 参数1(index)：将数据传值的顶点属性。
+- 参数2(size)：每次取的数据大小。位置每次取两个，颜色则每次取三个。
+- 参数3(type)：数据占多大字节。
+- 参数4(normalized)：是否标准化。
+- 参数5(stried)：每个顶点数据所占字节数。比如有这么一组数据[1, 0, 0, 1, 0, 1]，如果stried为0，然后每次取两个数据，最后则是(1, 0),(0, 1),(0, 1)；如果stried为3*4个字节，顶点数据每12个字节才能读到我们需要的数据，最后则是(1, 0),(1, 0)
+- 参数6(offset)：偏移多少字节后开始读数据
+
+#### 启用缓冲区对象
+``` js
+gl.enableVertexAttribArray(triangleColorLocation);
+```
+
+### 效果图
+![](http://cdn.compelcode.com/image/fe/webgl-triangle-2.png)
+
+<!-- ### 矩阵变换平移
+![](http://cdn.compelcode.com/image/fe/webgl-translation-matrix.png) -->
