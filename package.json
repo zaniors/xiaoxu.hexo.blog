@@ -4,7 +4,11 @@
     "scripts": {
         "hexo": "hexo",
         "start": "hexo s -g -w",
-        "build": "hexo g -d"
+        "start draft": "hexo s -g -w --draft",
+        "build": "hexo g -d",
+        "post": "hexo new post",
+        "draft": "hexo new draft",
+        "publish": "hexo publish post"
     },
     "private": true,
     "hexo": {
