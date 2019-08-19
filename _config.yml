@@ -79,5 +79,5 @@ theme: hexo-theme-inside
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: ssh://root@compelcode.com:57924/my-git/zhary-hexo-git
+  repo: ssh://root@compelcode.com:2022/my-git/zhary-hexo-git
   branch: master
