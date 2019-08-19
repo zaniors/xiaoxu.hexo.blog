@@ -9,8 +9,8 @@ thumbnail: http://cdn.compelcode.com/image/fe/react-lifecycle.png
 不管学习任何框架，掌握框架的生命周期函数，才知道组件在某一时刻在执行什么任务
 
 ## React的生命周期主要分为三大块
-![react-lifecycle-v16.3](image/fe/react-lifecycle-v16.3.png)(React16.3)
-![react-lifecycle-v16.4](image/fe/react-lifecycle-v16.4.png)(React16.4)
+![react-lifecycle-v16.3](http://cdn.compelcode.com/image/fe/react-lifecycle-v16.3.png)(React16.3)
+![react-lifecycle-v16.4](http://cdn.compelcode.com/image/fe/react-lifecycle-v16.4.png)(React16.4)
 
 ### Mounting
 - **constructor**
