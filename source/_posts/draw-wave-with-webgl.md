@@ -32,7 +32,6 @@ thumbnail:
   // 顶点着色器
   // gl_Position：描述位置信息
   // gl_PointSize：绘制一个点的大小
-
   const V_SHADER_SOURCE =
   [
     'void main() {',
@@ -96,4 +95,26 @@ thumbnail:
 
 不过这并不是我想要的效果，我想要绘制一个圆点，并不是正方形
 #### 绘制圆点
-> 利用片元着色器提供的变量gl_PointCoord，来访问图片坐标
+
+![gl_PointCoord](images/webgl/webgl-gl_PointCoord.png)
+
+1. 利用片元着色器提供的变量gl_PointCoord，来访问当前片元所在图元的二维坐标(0.0至1.0)，如上图：
+2. 将以中心点(0.5, 0.5)的距离超过0.5的话，利用discard将之外片元忽略
+
+``` js 
+const F_SHADER_SOURCE =
+  [
+    'precision mediump float;',
+    'void main() {',
+      'float diff = distance(gl_PointCoord, vec2(0.5, 0.5));',
+        'if (diff <= 0.5) {',
+          'gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);',
+        '} else {',
+          'discard;',
+        '}',
+    '}',
+  ].join('\n')
+```
+> discard：只可用于片元着色器，当控制流遇到这个关键字时，正在处理的片元就会被标记为将要丢弃
+#### 圆点效果图
+![绘制一个point](images/webgl/webgl-circle.png)
