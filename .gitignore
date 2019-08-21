@@ -3,5 +3,16 @@ Thumbs.db
 db.json
 *.log
 node_modules/
-public/
+public/404
+public/api
+public/archives
+public/categories
+public/post
+public/tags
+public/*.js
+public/*.css
+public/*.html
+public/*.ico
+public/*.xml
+public/*.jpg
 .deploy*/
