@@ -1,7 +1,7 @@
 ---
 title: 制作icon的几种方式
 date: 2019-04-07 09:32:53
-thumbnail: http://cdn.compelcode.com/image/fe/font-icon.jpg
+thumbnail: https://cdn.compelcode.com/image/fe/font-icon.jpg
 tags: [前端,CSS]
 categories: [前端]
 ---

@@ -7,7 +7,7 @@ thumbnail:
 ---
 
 绘制一个三角形前，先看下GPU的渲染管线简图
-![GPU绘制流水线简图](http://cdn.compelcode.com/image/fe/gpu-rendering-pipeline.jpg)
+![GPU绘制流水线简图](https://cdn.compelcode.com/image/fe/gpu-rendering-pipeline.jpg)
 而现代的显卡已经支持开发者自己实现算法操作顶点和片元这两个模块，也就是我们说的可编程的着色器，GLSL。
 > 上面流水线用三角形举例：
 
@@ -160,7 +160,7 @@ function render() {
 render();
 ```
 ### 效果图
-![](http://cdn.compelcode.com/image/fe/webgl-triangle-1.png)
+![](https://cdn.compelcode.com/image/fe/webgl-triangle-1.png)
 
 ### 绘制颜色
 > 上面将三角形的位置通过变量传入着色器，下面将颜色也传入着色器
@@ -242,7 +242,7 @@ gl.enableVertexAttribArray(triangleColorLocation);
 ```
 
 ### 效果图
-![](http://cdn.compelcode.com/image/fe/webgl-triangle-2.png)
+![](https://cdn.compelcode.com/image/fe/webgl-triangle-2.png)
 
 <!-- ### 矩阵变换平移
-![](http://cdn.compelcode.com/image/fe/webgl-translation-matrix.png) -->
+![](https://cdn.compelcode.com/image/fe/webgl-translation-matrix.png) -->

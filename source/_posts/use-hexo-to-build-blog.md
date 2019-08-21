@@ -1,7 +1,7 @@
 ---
 title: 使用hexo搭建自己的博客
 date: 2019-04-19 15:19:43
-thumbnail: http://cdn.compelcode.com/image/fe/hexo.jpg
+thumbnail: https://cdn.compelcode.com/image/fe/hexo.jpg
 tags: [hexo, nginx, git]
 categories: [前端]
 ---

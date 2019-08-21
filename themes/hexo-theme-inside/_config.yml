@@ -16,8 +16,14 @@ appearance:
   # is used as the background when the sidebar is open, default to accent_color,
   # for the best appearance, Keep its accent consistent with accent_color
   background:
-    - 'url(//www.toptal.com/designers/subtlepatterns/patterns/confectionary.png) #f5f7fa'
-    - '#2a2b33'
+    - 'url(//www.toptal.com/designers/subtlepatterns/patterns/tic-tac-toe.png)'
+    # - 'url(//www.toptal.com/designers/subtlepatterns/patterns/prism.png)'
+    # - 'url(//www.toptal.com/designers/subtlepatterns/patterns/paper.png)'
+    # - 'url(//www.toptal.com/designers/subtlepatterns/patterns/confectionary.png) #f5f7fa'
+    # - 'url(//www.toptal.com/designers/subtlepatterns/patterns/vintage-concrete.png)'
+    - '#e2d3b6'
+
+  accent_color: '#8409e6'
 
   # Maximum width of content
   content_width: 900
@@ -28,7 +34,7 @@ profile:
   email: 2590000714@qq.com
 
   # Avatar URL, email address will be used for gravatar(https://en.gravatar.com) avatar if not specified.
-  avatar: http://cdn.compelcode.com/image/common/avatar.jpg
+  avatar: https://cdn.compelcode.com/image/common/avatar.jpg
 
   bio: Yesterday's the past, tomorrow's the future, but today is a GIFT. That's why it's called the present.
 
@@ -151,15 +157,15 @@ reward:
   # qrcode and url must be set at least one
   methods:
     - name: wechat
-      qrcode: http://cdn.compelcode.com/image/common/wechat.png
+      qrcode: https://cdn.compelcode.com/image/common/wechat.png
       url:
       text: 微信支付
     - name: alipay
-      qrcode: http://cdn.compelcode.com/image/common/alipay.png
+      qrcode: https://cdn.compelcode.com/image/common/alipay.png
       url: 
       text: 支付宝支付
     - name: paypal
-      qrcode: http://cdn.compelcode.com/image/common/paypal.png
+      qrcode: https://cdn.compelcode.com/image/common/paypal.png
       url: https://paypal.me/iamZhary
       text: Paypal
   #   - name: bitcoin

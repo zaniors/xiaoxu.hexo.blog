@@ -3,7 +3,7 @@ title: React中记录性能优化
 date: 2019-05-06 12:26:01
 tags: [react]
 categories: [前端]
-thumbnail: http://cdn.compelcode.com/image/fe/react-performance.jpg
+thumbnail: https://cdn.compelcode.com/image/fe/react-performance.jpg
 ---
 
 总结在react中的性能优化

@@ -3,7 +3,7 @@ title: 在React中使用Redux
 date: 2019-05-08 22:46:42
 tags: [react, redux]
 categories: [前端]
-thumbnail: http://cdn.compelcode.com/image/fe/redux-flow.jpg
+thumbnail: https://cdn.compelcode.com/image/fe/redux-flow.jpg
 ---
 
 Redux在React中基本的使用
@@ -20,7 +20,7 @@ Redux在React中基本的使用
 
 ## Chrome调试Redux
 - 安装Chrome插件，Redux DevTools
-- 打开开发者工具，找到Redux，这是还不能使用，调试项目Redux还需配合官方文档配置下![redux-devtools](images/fe/tools.png)
+- 打开开发者工具，找到Redux，这是还不能使用，调试项目Redux还需配合官方文档配置下![redux-devtools](images/fe/redux-devtools.png)
 - ```
     export const store = createStore(
         reducer,
@@ -164,4 +164,4 @@ private updateState() {
 
 ![redux-devtools-post](images/fe/redux-devtools-post.png)
 
-### 查看完整代码[https://gitee.com/Astraycat/react-cart-simple-use-redux)
+查看完整代码(https://gitee.com/Astraycat/react-cart-simple-use-redux)
