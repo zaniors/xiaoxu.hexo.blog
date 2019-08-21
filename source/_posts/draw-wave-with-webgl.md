@@ -12,7 +12,9 @@ thumbnail:
 1. 创建webgl/canvas
 2. 创建shader
 3. 创建webgl program
-4. 绘制point
+4. 绘制一个point圆点
+5. 绘制多个point圆点
+6. 让圆点动起来
 
 #### 创建webgl/canvas
 >  webgl借助opengl虽然具有绘制3D的能力以及调用GPU硬件加速等，但是最终还是需要canvas对象来呈现，它们的关系：
@@ -82,8 +84,8 @@ thumbnail:
 
 #### 绘制point
 ``` js
-  draw();
-  function draw() {
+  render();
+  function render() {
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.POINTS, 0, 1);
@@ -94,7 +96,7 @@ thumbnail:
 ![绘制一个point](images/webgl/webgl-point.png)
 
 不过这并不是我想要的效果，我想要绘制一个圆点，并不是正方形
-#### 绘制圆点
+#### 绘制一个point圆点
 
 ![gl_PointCoord](images/webgl/webgl-gl_PointCoord.png)
 
@@ -113,8 +115,57 @@ const F_SHADER_SOURCE =
           'discard;',
         '}',
     '}',
-  ].join('\n')
+  ].join('\n');
 ```
 > discard：只可用于片元着色器，当控制流遇到这个关键字时，正在处理的片元就会被标记为将要丢弃
 #### 圆点效果图
 ![绘制一个point](images/webgl/webgl-circle.png)
+
+#### 着色器数据动态化
+- attribute：顶点着色器使用，传输与顶点着色器相关数据
+- uniform：顶点或者片元着色器使用，传输与非顶点着色器数据，比如颜色，如果顶点与片元着色器申明相同的uniform，那么将会共享
+- varying：顶点着色器向片元着色器传递数据，两个着色器都必须要申明相同的varying(包括变量名与类型都必须一致)
+``` js
+  // 修改顶点着色器
+  const V_SHADER_SOURCE =
+  [
+    'attribute float v_point_size',
+    'void main() {',
+      'gl_Position = vec4(0.0, 0.0, 0.0, 1.0);',
+      'gl_PointSize = v_point_size;',
+    '}'
+  ].join('\n');
+
+  const vPointSize = gl.getAttribLocation(program, 'v_point_size');
+  gl.vertexAttrib1f(vPointSize, 20.0)
+
+  // 渲染
+  render()
+```
+- 既然这样，是不是可以循环，然后渲染出动态效果
+``` js
+  let i = 0;
+  let flag = false
+  setInterval(() => {
+    gl.vertexAttrib1f(aPointSize, i);
+    
+    if (i === 40) flag = true
+    if (i === 0) flag = false
+
+    flag ? i-- : i++;
+    draw()
+  }, 10);
+```
+#### 效果图
+![绘制一个point](images/webgl/point-ani.gif)
+
+比如说要渲染大量的point，或者point的位置从A移动到B，当然通过循环实现没毛病，但我们需要大量数据绘制时，可以利用WebGL提供的缓存区对象（buffer data），缓存区对象存放大量的数据供着色器使用
+> 同理，将gl_Position和gl_FragColor，也可以存放变量里，不同的是，片元着色器要用uniform申明，获取则gl.uniformLocation，设置则gl.uniform4f
+不管是设置顶点还是片元，webgl都提供多种方式vertexAttrib[1234]f[v]、uniform[1234][uif][v]，具体参考：
+1. ![设置uniform文档](https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext/uniform)
+2. ![设置vertex文档](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttrib)
+
+#### 绘制多个point圆点
+利用webgl缓冲区，让显卡从缓冲区读取着色器数据
+
+#### 让圆点动起来
