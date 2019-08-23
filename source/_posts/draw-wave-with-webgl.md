@@ -20,8 +20,11 @@ thumbnail:
 >  webgl借助opengl虽然具有绘制3D的能力以及调用GPU硬件加速等，但是最终还是需要canvas对象来呈现，它们的关系：
 
 ![渲染关系](https://cdn.compelcode.com/image/fe/webgl-and-cavans.jpg)
+``` html
+  <canvas id="glcanvas" width="700" height="500"></canvas>
+```
 ``` js
-  const canvasEl = document.body.appendChild(document.createElement('canvas'));
+  const canvasEl = document.body.querySelector('#glcanvas')
   const gl = canvasEl.getContext('webgl');
 
   gl.clearColor(0, 0, 0, 1.0);
@@ -170,7 +173,7 @@ const F_SHADER_SOURCE =
 - 创建buffer
 - 绑定buffer
 - 定义buffer数据，写入缓冲区
-- 通过vertexAttribPointer将制定规则的数据，写入指定的顶点属性变量中，最后启用指定缓存数据
+- 通过vertexAttribPointer将指定规则的数据，写入指定的顶点属性变量中，最后启用指定缓存数据
 
 ``` js
   const aPointSize = gl.getAttribLocation(program, 'a_point_size')
@@ -178,9 +181,11 @@ const F_SHADER_SOURCE =
 
   const bufferData = new Float32Array([
     // point_size
-    40.0,
+    10.0, 20.0, 30.0,
 
     // point_potision x y z
+    -0.3, -0.3, 0.0,
+    0.0, 0.0, 0.0,
     0.3, 0.3, 0.0,
   ])
 
@@ -191,12 +196,33 @@ const F_SHADER_SOURCE =
   gl.vertexAttribPointer(aPointSize, 1, gl.FLOAT, 0, 0, 0)
   gl.enableVertexAttribArray(aPointSize)
 
-  gl.vertexAttribPointer(aPointPosition, 3, gl.FLOAT, 0, 3 * bufferData.BYTES_PER_ELEMENT, 1 * bufferData.BYTES_PER_ELEMENT)
+  gl.vertexAttribPointer(aPointPosition, 3, gl.FLOAT, 0, 0, 3 * bufferData.BYTES_PER_ELEMENT)
   gl.enableVertexAttribArray(aPointPosition)
+
+  // draw()
+  gl.drawArrays(gl.POINTS, 0, 3)
+  // draw参数：
+  // 1、mode：绘制的形状，gl.POINTS，gl.LINES，gl.TRIANGLES，当然还有其它可以参考文档
+  // 2、first：从哪个点开始
+  // 3、count：绘制多少次
 ```
 [vertexAttribPointer详情用法参考之前文章](https://compelcode.com/post/draw-triangle-with-webgl#%E5%8F%96%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8%E9%87%8C%E7%9A%84%E9%A2%9C%E8%89%B2%E5%8F%98%E9%87%8F)
-已经完成了如何使用缓冲区，并且写入顶点着色器数据
+已经完成了如何使用缓冲区，并且将缓冲区数据写入顶点着色器中
 
 ![利用缓冲区绘制point](images/webgl/webgl-point-1.png)
+
+#### 动态生成缓冲区数据
+
+当然我们要实现的是"波浪效果"，包含上百个这样的point，不可能手动去写
+在生成"波浪"数据缓冲区之前，先看看webgl的坐标与canvas坐标的区别与如何转换
+##### webgl默认使用的是右手坐标系，如下图：
+
+![Right-Handed Coordinate System](images/webgl/right-handed-coordinate-system.webp)
+- canvas的0,0点在左上角，Y向下，坐标值为屏幕的像素
+- webgl的0,0点在canvas画布的中间，整个webgl尺寸区间在-1至1
+
+##### 将canvas坐标转换到webgl：
+
+![canvas-to-webgl](images/webgl/canvas-to-webgl.png)
 
 #### 让圆点动起来
