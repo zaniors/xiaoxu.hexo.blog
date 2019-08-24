@@ -220,9 +220,43 @@ const F_SHADER_SOURCE =
 ![Right-Handed Coordinate System](images/webgl/right-handed-coordinate-system.webp)
 - canvas的0,0点在左上角，Y向下，坐标值为屏幕的像素
 - webgl的0,0点在canvas画布的中间，整个webgl尺寸区间在-1至1
+- webgl的第四象限对应的canvas画布
 
 ##### 将canvas坐标转换到webgl：
 
 ![canvas-to-webgl](images/webgl/canvas-to-webgl.png)
+
+既然知道了转换公式，接下来生成缓冲区数据，假设实现如下图效果：
+
+![webgl-points](images/webgl/webgl-points.png)
+观察图形能看出几个地方规律：
+1. x轴数据量、y轴数据量
+2. x轴圆点间距、y轴圆点间距
+3. 点的大小
+```js
+  /**
+   * 
+   * @param {*} amX: x轴的数据总量
+   * @param {*} amY: y轴的数据总量
+   * @param {*} offsetX: x轴每个数据偏移量
+   * @param {*} offsetY: y轴每个数据偏移量
+   * @param {*} size: 点的大小
+   */
+  function generatePointVertex({mX: amX = 1, mY: amY = 1, offsetX = 1, offsetY = 1, size = 1}) {
+    for (let i = 1; i <= amX; i++) {
+      for (let j = 1; j <= amY; j++) {
+        const x = transToWebglX(offsetX * i)
+        const y = transToWebglY(offsetY * j)
+        const z = 1
+
+        vertexArr.push(size, x, y, z)
+      }
+    }
+
+    // console.log(vertexArr)
+    return vertexArr
+  }
+```
+
 
 #### 让圆点动起来
