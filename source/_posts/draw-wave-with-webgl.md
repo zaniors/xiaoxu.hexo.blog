@@ -226,14 +226,25 @@ const F_SHADER_SOURCE =
 
 ![canvas-to-webgl](images/webgl/canvas-to-webgl.png)
 
+``` js
+  function canvasToWebglX(x) {
+    return (x - width / 2) / (width / 2)
+  }
+
+  function canvasToWebglY(y) {
+    return -(y - height / 2) / (height / 2)
+  }
+```
 既然知道了转换公式，接下来生成缓冲区数据，假设实现如下图效果：
 
 ![webgl-points](images/webgl/webgl-points.png)
-观察图形能看出几个地方规律：
-1. x轴数据量、y轴数据量
+观察图形分析问题：
+1. x轴圆点数量、y轴圆点数量
 2. x轴圆点间距、y轴圆点间距
 3. 点的大小
-```js
+4. 点所在位置
+
+``` js
   /**
    * 
    * @param {*} amX: x轴的数据总量
@@ -241,22 +252,39 @@ const F_SHADER_SOURCE =
    * @param {*} offsetX: x轴每个数据偏移量
    * @param {*} offsetY: y轴每个数据偏移量
    * @param {*} size: 点的大小
+   * @param {*} top: 渲染y轴位置：true在上，false在下
+   * @param {*} left: 渲染x轴位置：true在左，false在右
    */
-  function generatePointVertex({mX: amX = 1, mY: amY = 1, offsetX = 1, offsetY = 1, size = 1}) {
+  const vertexArr = []
+  function generatePointVertex({amX = 1, amY = 1, offsetX = 1, offsetY = 1, size = 1, top = true, left = true}) {
     for (let i = 1; i <= amX; i++) {
       for (let j = 1; j <= amY; j++) {
-        const x = transToWebglX(offsetX * i)
-        const y = transToWebglY(offsetY * j)
+        const x = left ? canvasToWebglX(offsetX * i) : - canvasToWebglX(offsetX * i)
+        const y = top ? canvasToWebglY(offsetY * j) : - canvasToWebglY(offsetY * j)
         const z = 1
 
         vertexArr.push(size, x, y, z)
       }
     }
-
-    // console.log(vertexArr)
     return vertexArr
   }
 ```
 
+将生成的缓冲区数据渲染出来
+``` js
+  const vertexArr = []
+  const bufferData = new Float32Array(generatePointVertex({amX: 40, amY: 10, size: 3, offsetX: 22, offsetY: 20, top: false}))
+
+  const vertexBuffer = gl.createBuffer()
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer)
+  gl.bufferData(gl.ARRAY_BUFFER, bufferData, gl.STATIC_DRAW)
+
+  gl.vertexAttribPointer(aPointSize, 1, gl.FLOAT, 0, 4 * bufferData.BYTES_PER_ELEMENT, 0)
+  gl.enableVertexAttribArray(aPointSize)
+
+  gl.vertexAttribPointer(aPointPosition, 3, gl.FLOAT, 0, 4 * bufferData.BYTES_PER_ELEMENT, 1 * bufferData.BYTES_PER_ELEMENT)
+  gl.enableVertexAttribArray(aPointPosition)
+```
+![](images/webgl/webgl-wave-points.png)
 
 #### 让圆点动起来
