@@ -6,7 +6,9 @@ categories: [前端]
 thumbnail: 'https://cdn.compelcode.com/image/fe/debug.jpg'
 ---
 
-在vscode中调试js代码，在vscode中添加文件配置
+# 在vscode中调试js代码
+在vscode中添加文件配置，并且在vscode中打好断点即可调试
+
 > .vscode/launch.json
 
 ### 1、直接利用node环境调试js
@@ -44,3 +46,5 @@ thumbnail: 'https://cdn.compelcode.com/image/fe/debug.jpg'
 }
 ```
 - url: 需要调试的程序在本地开的web服务器
+
+![vscode debugger](https://cdn.compelcode.com/image/fe/debugger-for-node.jpg)
