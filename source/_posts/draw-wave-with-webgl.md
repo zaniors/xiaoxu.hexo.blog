@@ -1,6 +1,6 @@
 ---
 title: 使用WebGL绘制波浪效果
-date: 2019-08-03 13:59:43
+date: 2019-08-03
 tags: [webgl, glsl, javascript]
 categories: [前端, webgl]
 thumbnail:

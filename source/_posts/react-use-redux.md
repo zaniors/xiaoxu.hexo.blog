@@ -1,6 +1,6 @@
 ---
 title: 在React中使用Redux
-date: 2019-05-08 22:46:42
+date: 2019-05-08
 tags: [react, redux]
 categories: [前端]
 thumbnail: https://cdn.compelcode.com/image/fe/redux-flow.jpg

@@ -1,6 +1,6 @@
 ---
 title: React生命周期
-date: 2019-04-29 09:48:40
+date: 2019-04-29
 tags: [react]
 categories: [前端]
 thumbnail: https://cdn.compelcode.com/image/fe/react-lifecycle.png

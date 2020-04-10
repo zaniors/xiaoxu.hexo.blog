@@ -1,6 +1,6 @@
 ---
 title: 如何用vscode调试js代码
-date: 2020-03-26 15:22:37
+date: 2020-03-26
 tags: [vscode, debugger]
 categories: [前端]
 thumbnail: 'https://cdn.compelcode.com/image/fe/debug.jpg'

@@ -1,6 +1,6 @@
 ---
 title: 当React遇到Typescript-01
-date: 2019-04-25 11:05:31
+date: 2019-04-25
 thumbnail: https://cdn.compelcode.com/image/fe/react+typescript.png
 tags: [react, typescript]
 categories: [前端]

@@ -1,6 +1,6 @@
 ---
 title: 使用WebGL绘制一个漂亮的三角形
-date: 2019-06-15 09:40:27
+date: 2019-06-15
 tags: [webgl, glsl, javascript]
 categories: [前端, webgl]
 thumbnail:

@@ -1,6 +1,6 @@
 ---
 title: React中记录性能优化
-date: 2019-05-06 12:26:01
+date: 2019-05-06
 tags: [react]
 categories: [前端]
 thumbnail: https://cdn.compelcode.com/image/fe/react-performance.jpg

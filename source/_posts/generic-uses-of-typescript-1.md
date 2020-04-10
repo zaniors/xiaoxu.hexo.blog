@@ -1,6 +1,6 @@
 ---
 title: Typescript之泛型使用场景
-date: 2019-07-12 14:45:56
+date: 2019-07-12
 tags: [typescript]
 categories: [前端]
 thumbnail:

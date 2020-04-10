@@ -1,6 +1,6 @@
 ---
 title: webgl基本介绍
-date: 2019-06-02 12:16:58
+date: 2019-06-02
 tags: [webgl, glsl, javascript]
 categories: [前端, webgl]
 thumbnail:
