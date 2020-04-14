@@ -136,4 +136,4 @@ Pick：挑选出T类型中K的属性 => Pick<{ name: string; age: number }, 'nam
 Exclude：排除T中含有K属性的，返回T => Exclude<string | number, number> => // string
 Omit：忽略某些属性，Omit<{ name: string, age: number }, 'name'> => // { age: number }
 
-![source code](https://github.com/ZAnsder/UIReact/blob/master/src/components/Button/button.tsx)
+[查看source code](https://github.com/ZAnsder/UIReact/blob/master/src/components/Button/button.tsx)
