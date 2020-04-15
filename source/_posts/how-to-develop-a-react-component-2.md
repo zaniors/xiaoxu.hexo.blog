@@ -37,7 +37,7 @@ MacBook-Pro:my-git zhangxu$ npx create-reatc-app UIReact --typescript
 - 原生属性如何使用？比如onClick事件，button的name属性，a的target属性等
 
 ## 定义接口
-```tsx
+```ts
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link';
 export type ButtonSize = 'large' | 'middle' | 'small';
 
@@ -53,7 +53,7 @@ interface IBaseButtonProps {
 > 这里使用了<span style="color: red; font-weight: bold;">字符串字面量</span>配合<span style="color: red; font-weight: bold;">联合类型</span>，定义了ButtonType，这样的好处是什么呢？为什么不使用enum或者interface
 
 使用enum和interface都是没有问题的，但是有一点就是，接口需要export出去，调用者在使用时需要import接口，比如：
-```tsx
+```ts
 // button.tsx
 export enum ButtonType {
   Primary = 'primary',
@@ -71,7 +71,7 @@ import Button, { ButtonType } from './components/Button/button';
 ## 在React中添加动态的class，变得很繁琐，推荐使用classnames第三方库编写动态class
 > [classnames => usage-with-reactjs](https://www.npmjs.com/package/classnames#usage-with-reactjs)
 解决问题一：
-```tsx
+```ts
 // size属性为'large' => g-btn-large
 // type属性为'primary' => g-btn-primary
 // href属性为'https://xxx.com' => disabled
@@ -92,7 +92,7 @@ return (
 ```
 
 ## 借助TS的<span style="color: red; font-weight: bold;">交叉类型<span><span style="color: black; font-weight: 700;">，将DOM元素的原生属性和我们自定义属性进行合并</span>
-```tsx
+```ts
 import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 
 type INativeButtonProps = ButtonHTMLAttributes<HTMLElement>;
@@ -107,7 +107,7 @@ const Button: FC<ButtonProps> = (props) => { ... }
 ![type-error](https://cdn.compelcode.com/image/fe/bc-type-error.png)
 
 我们去看看React.ButtonHTMLAttributes的定义
-```tsx
+```ts
 // node_modules/@types/react/index.d.ts
 interface ButtonHTMLAttributes<T> extends HTMLAttributes<T> {
   autoFocus?: boolean;
@@ -125,15 +125,17 @@ interface ButtonHTMLAttributes<T> extends HTMLAttributes<T> {
 ```
 如你所看到的，原生button已经有type定义，那非要使用type属性怎么做？可否忽略掉原生的type属性？答案是肯定的。借助TS的<span style="color: red; font-weight: bold;">Omit类型</span>
 我们重新定义一下ButtonProps接口
-```tsx
+```ts
 type ButtonProps = Omit<INativeButtonProps, 'type'> & INativeAnchorProps & IBaseButtonProps;
 ```
 Omit高级类型的源码：
-```tsx
+```ts
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
 ```
-Pick：挑选出T类型中K的属性 => Pick<{ name: string; age: number }, 'name> => // { name: string }
+```ts
+Pick：挑选出T类型中K的属性 => Pick<{ name: string; age: number }, 'name'> => // { name: string }
 Exclude：排除T中含有K属性的，返回T => Exclude<string | number, number> => // string
 Omit：忽略某些属性，Omit<{ name: string, age: number }, 'name'> => // { age: number }
+```
 
 [查看source code](https://github.com/ZAnsder/UIReact/blob/master/src/components/Button/button.tsx)
