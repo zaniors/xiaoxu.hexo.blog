@@ -11,7 +11,7 @@ thumbnail:
 MacBook-Pro:my-git zhangxu$ npx create-reatc-app UIReact --typescript
 ```
 ## 分析我们的目录结构，是否有一种完美的标准目录结构？
-[可以参考React官方文档](https://react.docschina.org/docs/faq-structure.html)，答案是否定的，所以按照自己项目搭配，设计目录时只要遵循以下：避免多层嵌套，不要过度思考
+[可以参考React官方文档](https://zh-hans.reactjs.org/docs/faq-structure.html)，答案是否定的，所以按照自己项目搭配，设计目录时只要遵循以下：避免多层嵌套，不要过度思考
 ![目录结构](https://cdn.compelcode.com/image/fe/bc-file-structure.png)
 
 ## 安装normalize.css来重置浏览器样式保持一致性
@@ -39,7 +39,7 @@ MacBook-Pro:my-git zhangxu$ npx create-reatc-app UIReact --typescript
 ## 定义接口
 ```ts
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link';
-export type ButtonSize = 'large' | 'middle' | 'small';
+export type ButtonSize = 'lg' | 'md' | 'sm';
 
 interface IBaseButtonProps {
   size?: ButtonSize;
@@ -138,4 +138,4 @@ Exclude：排除T中含有K属性的，返回T => Exclude<string | number, numbe
 Omit：忽略某些属性，Omit<{ name: string, age: number }, 'name'> => // { age: number }
 ```
 
-[查看source code](https://github.com/ZAnsder/UIReact/blob/master/src/components/Button/button.tsx)
+[查看完整的source code](https://github.com/ZAnsder/UIReact/blob/master/src/components/Button/button.tsx)
