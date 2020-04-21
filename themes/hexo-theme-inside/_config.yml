@@ -43,7 +43,7 @@ menu:
   Home: /
   # About: /about
   # Links: /links
-  Github: https://gitee.com/Astraycat
+  Github: https://github.com/ZAnsder
 
 # Sidebar social media
 # Try to sort by changing the order of the keys
@@ -52,7 +52,7 @@ sns:
   email:
   # `feed` will fallback to `hexo.config.feed.path` if not specified
   feed:
-  github: https://gitee.com/Astraycat
+  github: https://github.com/ZAnsder
   twitter:
   facebook:
   google+:
