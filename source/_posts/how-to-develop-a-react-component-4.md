@@ -49,3 +49,4 @@ describe('测试Button组件', () => {
 **当我们每写完一个测试用例，我们的代码就会更加的健壮，无论是迭代开发新功能，还是团队成员维护，这些测试用例都会给我们带来诸多好处，比如不小心删除了某些逻辑，初始化g-btn没有添加，这段测试用例则不会通过，我们可以很快的定位到问题所在，并且后面配合npm script和Travis CI，可以在提交代码时运行测试，通过才能打包发布等等**
 
 [查看完整的source code](https://github.com/ZAnsder/UIReact/blob/master/src/components/Button/button.test.tsx)
+[jest完整的断言文档](https://jestjs.io/docs/en/expect#reference)
