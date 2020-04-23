@@ -98,7 +98,7 @@ import '../src/scss/index.scss';
 2. Native Addons：自带的插件
 
 #### Decorators是什么？如何使用？
-decorator就像是自定义插件，返回一个外层容器，最后在元数据里面使用。
+decorator就像是自定义插件，它返回一个外层容器，最后在元数据里面使用。
 ```tsx
 const centerTextStyle: React.CSSProperties = {
   textAlign: 'center'
@@ -110,6 +110,11 @@ DefaultButton.story = {
   name: '默认按钮',
   decorators: [CenterTextDecorator]
 }
+
+// storiesOf API
+storiesOf('按钮组件', module)
+  .add('默认按钮', () => <Button>默认按钮</Button>)
+  .addDecorator(CenterTextDecorator);
 ```
 > 其实就是作为外层容器把DefaultButton DOM包裹起来，如果有多个decorator，会一直嵌套下去
 
