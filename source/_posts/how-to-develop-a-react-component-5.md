@@ -333,3 +333,5 @@ export type ButtonProps = IBaseButtonProps & Omit<INativeButtonProps, 'type'> & 
 ```ts
 export type ButtonProps = IBaseButtonProps & Omit<INativeButtonProps & INativeAnchorProps, 'type'>;
 ```
+
+这样便实现了，使用👉[jsdoc](https://jsdoc.app/)注释，通过docgen来帮我们自动抓取这些信息，来生成文档信息，**🌹代码即文档**
