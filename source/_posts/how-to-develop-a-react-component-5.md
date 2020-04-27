@@ -207,7 +207,6 @@ addParameters({
 ```
 
 button组件里额外配置相关信息
-333
 ```ts
 // button.stories.tsx export default
 export default {
@@ -240,9 +239,97 @@ DefaultButton.story = {
 ![storybook-button演示图](https://cdn.compelcode.com/image/fe/storybook-buitton-2.jpg)
 
 ### 通过代码注释来自动生成文档
+#### 借助一个第三方[webpack loader](https://github.com/strothj/react-docgen-typescript-loader)，在React Component（TS）中生成docgen信息
 ```bash
+// 安装react-docgen loader
 MacBook-Pro:my-git zhangxu$ yarn add react-docgen-typescript-loader -D
 ```
 ```ts
-// main.js
+// storybook v5.3.18 main.js  配置webpack loader
+module.exports = {
+  stories: ['../src/**/*.stories.tsx'],
+  addons: [
+    '@storybook/preset-create-react-app',
+    '@storybook/addon-actions',
+    '@storybook/addon-links',
+  ],
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      use: [
+        {
+          loader: require.resolve('react-docgen-typescript-loader')
+        }
+      ],
+    });
+    return config;
+  },
+};
+```
+
+#### 这时重启`yarn storybook`，docgen可能无法正常工作的原因，或者报错：
+1. Button组件Unexpected token, expected ";"，`export default Button` ***fix***：`export default Button;`
+2. Button组件使用了export default导出方式，docgen无法在`export default Button`工作，需要使用export named导出，***fix***：`export const Button = () => {...}`
+3. Button组件使用`React.FC、React.ButtonHTMLAttributes、React.AnchorHTMLAttributes`等React的接口，***fix***：`import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';`
+
+这时docgen把HTML原生属性也获取到并展示在storybook中，这显然不是我们想要的，出现的原因则是之前在定义Button的props使用了交叉类型[见二小节](/post/how-to-develop-a-react-component-2#借助TS的交叉类型，将DOM元素的原生属性和我们自定义属性进行合并)，让Button支持原生属性导致的
+解决办法：配置docgen的options
+```js
+{
+  loader: require.resolve('react-docgen-typescript-loader'),
+  options: {
+    propFilter: (prop) => {
+      if (prop.parent) {
+        return !prop.parent.fileName.includes('node_modules')
+      }
+      return true
+    }
+  }
+}
+```
+
+#### 解决无法识别定义字面量和联合类型接口
+```js
+{
+  loader: require.resolve('react-docgen-typescript-loader'),
+  options: {
+    shouldExtractLiteralValuesFromEnum: true,
+    ...
+  }
+}
+```
+
+#### 其它问题
+申明ButtonProps如下定义：
+```ts
+export type ButtonType = 'primary' | 'default' | 'danger' | 'link';
+export type ButtonSize = 'lg' | 'md' | 'sm';
+
+interface IBaseButtonProps {
+  /** 按钮的大小 */
+  size?: ButtonSize;
+  /** 按钮的类型 */
+  type?: ButtonType;
+  /** 按钮是否禁用 */
+  disabled?: boolean;
+  /** 同A标签的原生属性  */
+  href?: string;
+  className?: string;
+  children?: React.ReactNode;
+}
+
+type INativeButtonProps = ButtonHTMLAttributes<HTMLElement>;
+type INativeAnchorProps = AnchorHTMLAttributes<HTMLElement>;
+export type ButtonProps = Omit<INativeButtonProps, 'type'> & INativeAnchorProps & IBaseButtonProps;
+```
+这样导致了docgen只能识别size信息，上面配置propFilter时，`prop.parent.fileName.includes('node_modules')`都为true
+解决如下：
+```ts
+export type ButtonProps = IBaseButtonProps & Omit<INativeButtonProps, 'type'> & INativeAnchorProps;
+```
+
+这里又出现了新的问题，ButtonType是字面量和联合类型，但是又是原生属性，即便是`shouldExtractLiteralValuesFromEnum: true`，也无法解析到ButtonType，而解析到了原生属性
+解决如下：
+```ts
+export type ButtonProps = IBaseButtonProps & Omit<INativeButtonProps & INativeAnchorProps, 'type'>;
 ```
