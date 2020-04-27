@@ -16,7 +16,8 @@ appearance:
   # is used as the background when the sidebar is open, default to accent_color,
   # for the best appearance, Keep its accent consistent with accent_color
   background:
-    - 'url(//www.toptal.com/designers/subtlepatterns/patterns/tic-tac-toe.png)'
+    # - 'url(//www.toptal.com/designers/subtlepatterns/patterns/vintage-wallpaper.png)'
+    # - 'url(//www.toptal.com/designers/subtlepatterns/patterns/tic-tac-toe.png)'
     # - 'url(//www.toptal.com/designers/subtlepatterns/patterns/prism.png)'
     # - 'url(//www.toptal.com/designers/subtlepatterns/patterns/paper.png)'
     # - 'url(//www.toptal.com/designers/subtlepatterns/patterns/confectionary.png) #f5f7fa'
