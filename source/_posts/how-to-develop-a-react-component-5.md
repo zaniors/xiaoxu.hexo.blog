@@ -10,8 +10,9 @@ thumbnail:
 可以参考Antd、ElementUI等，都会有个共同点，分开展示不同的属性下的按钮，以及所有Attribute展示接口
 
 ## 所存在的问题
-- create-react-app创建的入口文件不适合组件管理展示
 - 无法追踪调试以及行为属性模拟展示
+- 无法自动生成文档
+- ...
 
 ## 使用StoryBook生成文档
 我们熟悉的Antd是使用的[bisheng](https://github.com/benjycui/bisheng)这个工具生成的开发文档，bisheng是使用React将md文件转为静态文件站点的工具，网上也没有很全面的资料。
